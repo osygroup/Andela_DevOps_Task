@@ -13,7 +13,6 @@ resource "aws_vpc" "VPC" {
 }
 
 
-
 resource "aws_subnet" "PublicSubnet1" {
   cidr_block = "10.0.0.0/24"
   map_public_ip_on_launch = false
@@ -24,7 +23,6 @@ resource "aws_subnet" "PublicSubnet1" {
     Name = "Public Subnet AZ A"
   }
 }
-
 
 
 resource "aws_subnet" "PublicSubnet2" {
@@ -39,7 +37,6 @@ resource "aws_subnet" "PublicSubnet2" {
 }
 
 
-
 resource "aws_subnet" "PublicSubnet3" {
   cidr_block = "10.0.2.0/24"
   map_public_ip_on_launch = false
@@ -50,7 +47,6 @@ resource "aws_subnet" "PublicSubnet3" {
     Name = "Public Subnet AZ C"
   }
 }
-
 
 
 resource "aws_subnet" "PrivateSubnet1" {
@@ -65,7 +61,6 @@ resource "aws_subnet" "PrivateSubnet1" {
 }
 
 
-
 resource "aws_subnet" "PrivateSubnet2" {
   cidr_block = "10.0.11.0/24"
   map_public_ip_on_launch = false
@@ -76,7 +71,6 @@ resource "aws_subnet" "PrivateSubnet2" {
     Name = "Private Subnet AZ B"
   }
 }
-
 
 
 resource "aws_subnet" "PrivateSubnet3" {
@@ -120,7 +114,6 @@ resource "aws_route_table_association" "AssociationForRouteTablePublic2" {
 }
 
 
-
 resource "aws_route_table" "RouteTablePrivate1" {
   vpc_id = aws_vpc.VPC.id
 
@@ -133,7 +126,6 @@ resource "aws_route_table_association" "AssociationForRouteTablePrivate10" {
   subnet_id = aws_subnet.PrivateSubnet1.id
   route_table_id = aws_route_table.RouteTablePrivate1.id
 }
-
 
 
 resource "aws_route_table" "RouteTablePrivate2" {
@@ -150,7 +142,6 @@ resource "aws_route_table_association" "AssociationForRouteTablePrivate20" {
 }
 
 
-
 resource "aws_route_table" "RouteTablePrivate3" {
   vpc_id = aws_vpc.VPC.id
 
@@ -165,7 +156,6 @@ resource "aws_route_table_association" "AssociationForRouteTablePrivate30" {
 }
 
 
-
 resource "aws_internet_gateway" "Igw" {
   vpc_id = aws_vpc.VPC.id
 }
@@ -175,18 +165,13 @@ resource "aws_security_group" "SecurityGroup1" {
   name = "NginxSecurityGroup"
   description = "Build a custom security group."
   vpc_id = aws_vpc.VPC.id
-
-
-
 }
+
 
 resource "aws_security_group" "SecurityGroup2" {
   name = "NodejsSecurityGroup"
   description = "Build a custom security group."
   vpc_id = aws_vpc.VPC.id
-
-
-
 }
 
 
@@ -201,6 +186,7 @@ resource "aws_s3_bucket" "FinanceS3Bucket" {
     }
   }
 }
+
 
 resource "aws_s3_bucket_public_access_block" "blockPublicAccess" {
   bucket = aws_s3_bucket.S3Bucket.id
