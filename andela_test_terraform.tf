@@ -204,7 +204,7 @@ resource "aws_launch_template" "foobar" {
 }
 
 resource "aws_autoscaling_group" "nginx_asg" {
-  availability_zones = ["us-east-1a"]
+  availability_zones = ["eu-west-2a","eu-west-2b","eu-west-2c"]
   desired_capacity   = 3
   max_size           = 3
   min_size           = 1
@@ -217,7 +217,7 @@ resource "aws_autoscaling_group" "nginx_asg" {
 
 
 resource "aws_autoscaling_group" "nodejs_asg" {
-  availability_zones = ["us-east-1a"]
+  availability_zones = ["eu-west-2a","eu-west-2b","eu-west-2c"]
   desired_capacity   = 3
   max_size           = 3
   min_size           = 1
@@ -346,7 +346,7 @@ resource "aws_lb_listener" "ApplicationLoadBalancerListener2" {
 
 
 resource "aws_docdb_cluster" "docdb" {
-  cluster_identifier      = "my-docdb-cluster"
+  cluster_identifier      = "mongodb-docdb-cluster"
   engine                  = "docdb"
   master_username         = "samuel"
   master_password         = "mustbeeightchars"
@@ -354,7 +354,4 @@ resource "aws_docdb_cluster" "docdb" {
   preferred_backup_window = "07:00-09:00"
   skip_final_snapshot     = true
 }
-
-
-
 
